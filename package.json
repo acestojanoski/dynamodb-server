@@ -4,7 +4,10 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "node src/dynamodb-local.js start"
+	},
+	"bin": {
+		"dynamodb-local": "./src/dynamodb-local.js"
 	},
 	"author": "Aleksandar Stojanoski",
 	"license": "MIT",
@@ -16,7 +19,7 @@
 		"shelljs": "^0.8.3",
 		"unzipper": "^0.10.7"
 	},
-	"bin": {
-		"dynamodb": "./src/dynamodb.js"
+	"devDependencies": {
+		"prettier": "^1.19.1"
 	}
 }
