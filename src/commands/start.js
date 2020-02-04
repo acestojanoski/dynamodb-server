@@ -1,9 +1,9 @@
-const unzipAsync = require('../utils/unzip-async');
-const startDynamodbLocalAsync = require('../utils/start-dynamodb-local-async');
-const downloadDynamodbLocalAsync = require('../utils/download-dynamodb-local-async');
+const unzipDynamodbWithRetryAsync = require('../utils/unzip-dynamodb-with-retry-async');
+const startDynamodbWithRetryAsync = require('../utils/start-dynamodb-with-retry-async');
+const downloadDynamodbAsync = require('../repository/download-dynamodb-async');
 
 module.exports = () =>
-	downloadDynamodbLocalAsync()
-		.then(unzipAsync)
-		.then(startDynamodbLocalAsync)
+	downloadDynamodbAsync()
+		.then(unzipDynamodbWithRetryAsync)
+		.then(startDynamodbWithRetryAsync)
 		.catch(console.error);

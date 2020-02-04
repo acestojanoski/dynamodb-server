@@ -3,7 +3,7 @@ const rimraf = require('rimraf');
 const unziper = require('unzipper');
 const retry = require('async-retry');
 const {promisify} = require('util');
-const downloadDynamodbLocalAsync = require('./download-dynamodb-local-async');
+const downloadDynamodbAsync = require('../repository/download-dynamodb-async');
 const {yellow, red} = require('chalk');
 const path = require('path');
 const os = require('os');
@@ -12,6 +12,10 @@ const rimrafAsync = promisify(rimraf);
 
 const execute = () =>
 	new Promise((resolve, reject) => {
+		if (fs.existsSync(path.join(os.tmpdir(), 'dynamodb-local'))) {
+			return resolve();
+		}
+
 		console.log(yellow('\n================================='));
 		console.log(yellow('Unzipping dynamodb local...'));
 		console.log(yellow('================================='));
@@ -26,12 +30,8 @@ const execute = () =>
 			.on('error', reject);
 	});
 
-module.exports = () => {
-	if (fs.existsSync(path.join(os.tmpdir(), 'dynamodb-local'))) {
-		return Promise.resolve();
-	}
-
-	return retry(
+module.exports = () =>
+	retry(
 		async bail => {
 			let result;
 			try {
@@ -41,8 +41,9 @@ module.exports = () => {
 				console.log(red('Unzipping error...'));
 				console.log(red('================================='));
 
+				// retry previous step
 				await rimrafAsync(path.join(os.tmpdir(), 'dynamodb-local.zip'));
-				await downloadDynamodbLocalAsync();
+				await downloadDynamodbAsync();
 				throw error;
 			}
 
@@ -50,4 +51,3 @@ module.exports = () => {
 		},
 		{retries: 1}
 	);
-};

@@ -1,6 +1,6 @@
 const shell = require('shelljs');
 const retry = require('async-retry');
-const unzipAsync = require('./unzip-async');
+const unzipDynamodbWithRetryAsync = require('./unzip-dynamodb-with-retry-async');
 const {yellow, red} = require('chalk');
 const {promisify} = require('util');
 const rimraf = require('rimraf');
@@ -40,11 +40,12 @@ module.exports = () =>
 				result = await execute();
 			} catch (error) {
 				console.log(red('\n================================='));
-				console.log(red('Starting dynamodb local error...'));
+				console.log(red('Starting dynamodb local server error...'));
 				console.log(red('================================='));
 
+				// retry previous step
 				await rimrafAsync(path.join(os.tmpdir(), 'dynamodb-local'));
-				await unzipAsync();
+				await unzipDynamodbWithRetryAsync();
 				throw error;
 			}
 

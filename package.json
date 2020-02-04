@@ -1,13 +1,13 @@
 {
-	"name": "dynamodb-local",
+	"name": "@acestojanoski/dynamodb-server",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "node src/dynamodb-local.js start"
+		"start": "node src/dynamodb-server.js start"
 	},
 	"bin": {
-		"dynamodb-local": "./src/dynamodb-local.js"
+		"dynamodb-server": "./src/dynamodb-server.js"
 	},
 	"author": "Aleksandar Stojanoski",
 	"license": "MIT",
@@ -21,5 +21,13 @@
 	},
 	"devDependencies": {
 		"prettier": "^1.19.1"
+	},
+	"homepage": "https://github.com/acestojanoski/dynamodb-server#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/acestojanoski/dynamodb-server.git"
+	},
+	"bugs": {
+		"url": "https://github.com/acestojanoski/dynamodb-server/issues"
 	}
 }
