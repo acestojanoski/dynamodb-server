@@ -29,5 +29,17 @@
 	},
 	"bugs": {
 		"url": "https://github.com/acestojanoski/dynamodb-server/issues"
-	}
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org"
+	},
+	"keywords": [
+		"dynamodb",
+		"dynamodb-server",
+		"server",
+		"local",
+		"aws",
+		"aws-dynamodb",
+		"local server"
+	]
 }
