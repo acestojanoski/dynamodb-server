@@ -12,7 +12,8 @@ CLI to start a local dynamodb server.
 -   `npm install -g dynamodb-server`
 -   Configure aws cli with fake AWS Access Key ID and AWS Secret Access Key (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 
-## Commands
+## Usage
 
--   dynamodb-server start
--   dynamodb-server --help, dynamodb -h
+```
+$ dynamodb-server
+```
