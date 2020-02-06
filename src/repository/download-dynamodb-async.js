@@ -1,10 +1,10 @@
-const fs = require('fs');
-const https = require('https');
-const {yellow} = require('chalk');
-const path = require('path');
-const os = require('os');
+import fs from 'fs';
+import https from 'https';
+import {yellow} from 'chalk';
+import path from 'path';
+import os from 'os';
 
-module.exports = () =>
+export default () =>
 	new Promise((resolve, reject) => {
 		if (fs.existsSync(path.join(os.tmpdir(), 'dynamodb-local.zip'))) {
 			return resolve();

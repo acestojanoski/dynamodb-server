@@ -1,11 +1,11 @@
-const shell = require('shelljs');
-const retry = require('async-retry');
-const unzipDynamodbWithRetryAsync = require('./unzip-dynamodb-with-retry-async');
-const {yellow, red} = require('chalk');
-const {promisify} = require('util');
-const rimraf = require('rimraf');
-const path = require('path');
-const os = require('os');
+import shell from 'shelljs';
+import retry from 'async-retry';
+import unzipDynamodbWithRetryAsync from './unzip-dynamodb-with-retry-async';
+import {yellow, red} from 'chalk';
+import {promisify} from 'util';
+import rimraf from 'rimraf';
+import path from 'path';
+import os from 'os';
 
 const rimrafAsync = promisify(rimraf);
 
@@ -31,7 +31,7 @@ const execute = () =>
 		);
 	});
 
-module.exports = () =>
+export default () =>
 	retry(
 		async bail => {
 			let result;

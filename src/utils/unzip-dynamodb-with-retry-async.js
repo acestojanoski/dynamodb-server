@@ -1,12 +1,12 @@
-const fs = require('fs');
-const rimraf = require('rimraf');
-const unziper = require('unzipper');
-const retry = require('async-retry');
-const {promisify} = require('util');
-const downloadDynamodbAsync = require('../repository/download-dynamodb-async');
-const {yellow, red} = require('chalk');
-const path = require('path');
-const os = require('os');
+import fs from 'fs';
+import rimraf from 'rimraf';
+import unziper from 'unzipper';
+import retry from 'async-retry';
+import {promisify} from 'util';
+import downloadDynamodbAsync from '../repository/download-dynamodb-async';
+import {yellow, red} from 'chalk';
+import path from 'path';
+import os from 'os';
 
 const rimrafAsync = promisify(rimraf);
 
@@ -30,7 +30,7 @@ const execute = () =>
 			.on('error', reject);
 	});
 
-module.exports = () =>
+export default () =>
 	retry(
 		async bail => {
 			let result;
